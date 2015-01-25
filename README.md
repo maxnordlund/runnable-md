@@ -1,8 +1,4 @@
-[ ]: ];eval "$(
-  sed -n '/^```/ {s|^```|#!/usr/bin/env |p;q;}' <$0
-  sed -n '/^```/,/^```/ s/^[^`][^`][^`]/&/p' <$0
-  echo exit \$?
-);exit \$?"
+[ ]: ];eval "$(sed -n '/^```/ {s|^```|#!/usr/bin/env |p;q;}' <$0;sed -n '/^```/,/^```/ s/^[^`][^`][^`]/&/p' <$0;echo exit \$?);exit \$?"
 # Executable Markdown
 Instead of having a seperate file conatining the code inside your Markdown, you
 should be able to run it diretly. This also allows for some very nice literate
@@ -10,7 +6,8 @@ programming.
 
 ## How to use
 Prepend your Markdown file with the following to make it executable. It needs
-to be run using your shell, `sh README.md`.
+to be run using your shell, `sh README.md`. To render properly on Github you
+need to replace all newlines with semicolons, to make one long line.
 
 ~~~markdown
 [ ]: ];eval "$(
