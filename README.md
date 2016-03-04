@@ -1,4 +1,4 @@
-[ ]: ];eval "$(sed -n '/^```/ {s|^```|#!/usr/bin/env |p;q;}' <$0;sed -n '/^```/,/^```/ s/^[^`][^`][^`]/&/p' <$0;echo exit \$?);exit \$?"
+[ ]: ];eval "$(sed -n '/^```/ {s|^```|#!/usr/bin/env |p;q;}' $0; sed -n '/^```/,/^```/p' $0 | sed 's/^```.*//g'; echo exit \$?);exit \$?"
 # Executable Markdown
 Instead of having a seperate file conatining the code inside your Markdown, you
 should be able to run it diretly. This also allows for some very nice literate
@@ -11,8 +11,8 @@ need to replace all newlines with semicolons, to make one long line.
 
 ~~~markdown
 [ ]: ];eval "$(
-  sed -n '/^```/ {s|^```|#!/usr/bin/env |p;q;}' <$0
-  sed -n '/^```/,/^```/ s/^[^`][^`][^`]/&/p' <$0
+  sed -n '/^```/ {s|^```|#!/usr/bin/env |p;q;}' $0
+  sed -n '/^```/,/^```/p' $0 | sed 's/^```.*//g'
   echo exit \$?
 );exit \$?"
 ~~~
